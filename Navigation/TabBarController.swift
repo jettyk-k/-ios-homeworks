@@ -10,7 +10,7 @@ import UIKit
 class TabBarController: UITabBarController {
 
     let feedVC = FeedViewController()
-    let profileVC = ProfileViewController()
+    let profileVC = LogInViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +22,12 @@ class TabBarController: UITabBarController {
     private func setupControllers() {
         let feedNavController = UINavigationController(rootViewController: feedVC)
         feedVC.tabBarItem.title = "Feed"
-        feedVC.tabBarItem.image = UIImage(systemName: "house")
+        feedVC.tabBarItem.image = UIImage(systemName: "house.fill")
         feedVC.navigationItem.title = "Feed"
         
         let profileNavController = UINavigationController(rootViewController: profileVC)
         profileVC.tabBarItem.title = "Profile"
-        profileVC.tabBarItem.image = UIImage(systemName: "person")
+        profileVC.tabBarItem.image = UIImage(systemName: "person.fill")
         profileVC.navigationItem.title = "Profile"
         
         viewControllers = [feedNavController, profileNavController]

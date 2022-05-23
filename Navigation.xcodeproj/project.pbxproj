@@ -18,6 +18,7 @@
 		F75D06892838297400A25573 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D06882838297400A25573 /* Post.swift */; };
 		F75D068B28382D3E00A25573 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D068A28382D3E00A25573 /* InfoViewController.swift */; };
 		F78F734E283A4B3D00AE4141 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78F734D283A4B3D00AE4141 /* ProfileHeaderView.swift */; };
+		F7EC04D8283BEA840063FB25 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EC04D7283BEA840063FB25 /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		F75D06882838297400A25573 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F75D068A28382D3E00A25573 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		F78F734D283A4B3D00AE4141 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		F7EC04D7283BEA840063FB25 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			children = (
 				F78F734D283A4B3D00AE4141 /* ProfileHeaderView.swift */,
 				F75D06842838206800A25573 /* ProfileViewController.swift */,
+				F7EC04D7283BEA840063FB25 /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				F75D068128381E3200A25573 /* TabBarController.swift in Sources */,
 				F75D06832838205700A25573 /* FeedViewController.swift in Sources */,
 				ED7D70AB2835554B00082DC3 /* AppDelegate.swift in Sources */,
+				F7EC04D8283BEA840063FB25 /* LogInViewController.swift in Sources */,
 				ED7D70AD2835554B00082DC3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +311,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3Q88U4R5CP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -335,6 +340,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3Q88U4R5CP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
