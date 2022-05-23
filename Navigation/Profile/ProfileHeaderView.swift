@@ -49,7 +49,7 @@ class ProfileHeaderView: UIView {
     private lazy var setStatusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Show status", for: .normal)
+        button.setTitle("Set status", for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 4
         button.layer.shadowOffset.height = 4
@@ -64,13 +64,15 @@ class ProfileHeaderView: UIView {
     private lazy var statusTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "Listening to music"
+        textField.placeholder = "Set your status..."
         textField.layer.cornerRadius = 12
         textField.font = .systemFont(ofSize: 15, weight: .regular)
         textField.textColor = .black
-        textField.backgroundColor = .white
+        textField.backgroundColor = .systemGray6
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.black.cgColor
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
+        textField.leftViewMode = .always
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         return textField
     }()
