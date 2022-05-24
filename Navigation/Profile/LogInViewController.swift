@@ -8,7 +8,7 @@
 import UIKit
 
 class LogInViewController: UIViewController {
-
+    
     private let ColorSet: String = "#4885CC"
     
     private let nc = NotificationCenter.default
@@ -94,7 +94,7 @@ class LogInViewController: UIViewController {
         loginField.delegate = self
         passwordField.delegate = self
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
@@ -207,7 +207,7 @@ class LogInViewController: UIViewController {
     }
 }
 
-// MARK: UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 
 extension LogInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
