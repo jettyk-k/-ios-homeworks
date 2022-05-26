@@ -13,14 +13,13 @@ protocol PhotosTableViewCellDelegate: AnyObject {
 
 class PhotosTableViewCell: UITableViewCell {
     
+    let photoGalery: [PhotoGalery] = PhotoGalery.makeImageModel()
+    
     weak var delegate: PhotosTableViewCellDelegate?
-    
-    private let imageModel: [ImageModel] = ImageModel.makeImageModel()
-    
+      
     private lazy var collectionView: UICollectionView = {
         let layoutCollection = UICollectionViewFlowLayout()
         layoutCollection.scrollDirection = .horizontal
-        
         let viewCollection = UICollectionView(frame: .zero ,collectionViewLayout: layoutCollection)
         viewCollection.translatesAutoresizingMaskIntoConstraints = false
         viewCollection.dataSource = self
@@ -90,13 +89,13 @@ class PhotosTableViewCell: UITableViewCell {
 extension PhotosTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageModel.count
+        return photoGalery.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellPhotoCollectionViewCell.identifier, for: indexPath) as!
         CellPhotoCollectionViewCell
-        cell.setupImageModel(imageModel[indexPath.item])
+        cell.setupImageModel(photoGalery[indexPath.item])
         return cell
     }
 }
@@ -104,23 +103,23 @@ extension PhotosTableViewCell: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
     
-    var indentForPhoto: CGFloat {return 8}
+    var insetForPhoto: CGFloat {return 8}
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = (collectionView.bounds.width - indentForPhoto * 3) / 4
+        let height = (collectionView.bounds.width - insetForPhoto * 3) / 4
         return CGSize(width: height, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return indentForPhoto
+        return insetForPhoto
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: indentForPhoto, left: indentForPhoto, bottom: indentForPhoto, right: indentForPhoto)
+        UIEdgeInsets(top: insetForPhoto, left: insetForPhoto, bottom: insetForPhoto, right: insetForPhoto)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return indentForPhoto
+        return insetForPhoto
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

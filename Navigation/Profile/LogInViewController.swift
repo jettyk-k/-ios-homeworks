@@ -13,6 +13,8 @@ class LogInViewController: UIViewController {
     
     private let nc = NotificationCenter.default
     
+    private lazy var loginAndPassword = Login()
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -20,10 +22,11 @@ class LogInViewController: UIViewController {
     }()
     
     private let contentView: UIView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .white
-        return $0
-    }(UIView())
+        let contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = .white
+        return contentView
+    }()
     
     private let vkLogoImage: UIImageView = {
         let view = UIImageView()
@@ -86,6 +89,23 @@ class LogInViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
         return button
     }()
+    
+    private let warningLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Длина пароля менее 6 символов"
+        label.textColor = .systemRed
+        label.font = .systemFont(ofSize: 10)
+        label.isHidden = true
+        return label
+    }()
+    
+    private func showUpAlert() {
+        let alert = UIAlertController(title: "Неверный логин или пароль", message: nil, preferredStyle: .alert)
+        let actionPrint = UIAlertAction(title: "Oк", style: .default) { (_) -> Void in }
+        alert.addAction(actionPrint)
+        present(alert, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,7 +186,7 @@ class LogInViewController: UIViewController {
         ])
         
         [loginField, passwordField].forEach { stackView.addArrangedSubview($0) }
-        [vkLogoImage, stackView, loginButton].forEach { contentView.addSubview($0) }
+        [vkLogoImage, stackView, loginButton, warningLabel].forEach { contentView.addSubview($0) }
         
         NSLayoutConstraint.activate([
             vkLogoImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
@@ -199,11 +219,42 @@ class LogInViewController: UIViewController {
             passwordField.widthAnchor.constraint(equalTo: loginField.widthAnchor),
             passwordField.heightAnchor.constraint(equalToConstant: 50)
         ])
+        NSLayoutConstraint.activate([
+            warningLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor),
+            warningLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+        ])
     }
     
     @objc func buttonClicked() {
         let vc = ProfileViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        
+        guard let login = loginField.text else { return }
+        guard let password = passwordField.text else { return }
+        
+        if login.isEmpty && password.isEmpty {
+            loginField.shakeField()
+            passwordField.shakeField()
+        } else if login.isEmpty {
+            loginField.shakeField()
+        } else if password.isEmpty {
+            passwordField.shakeField()
+        } else {
+            if password.count < 6 {
+                warningLabel.isHidden = false
+            } else {
+                warningLabel.isHidden = true
+                if (loginField.text != loginAndPassword.userName) && (passwordField.text != loginAndPassword.userPassword) {
+                    showUpAlert()
+                } else if loginField.text != loginAndPassword.userName {
+                    showUpAlert()
+                } else if passwordField.text != loginAndPassword.userPassword {
+                    showUpAlert()
+                } else {
+                    navigationController?.pushViewController(vc, animated: true)
+                    warningLabel.isHidden = true
+                }
+            }
+        }
     }
 }
 

@@ -22,6 +22,7 @@
 		F7742646283D04AA000AC2B2 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7742645283D04AA000AC2B2 /* PhotosCollectionViewCell.swift */; };
 		F7742648283D050F000AC2B2 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7742647283D050F000AC2B2 /* ImageModel.swift */; };
 		F774264A283D055F000AC2B2 /* CellPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7742649283D055F000AC2B2 /* CellPhotoCollectionViewCell.swift */; };
+		F781B08F283FA3B4000B7E01 /* LoginAndPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781B08E283FA3B4000B7E01 /* LoginAndPassword.swift */; };
 		F78F734E283A4B3D00AE4141 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78F734D283A4B3D00AE4141 /* ProfileHeaderView.swift */; };
 		F7EC04D8283BEA840063FB25 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EC04D7283BEA840063FB25 /* LogInViewController.swift */; };
 		F7EC04DB283C045B0063FB25 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EC04DA283C045B0063FB25 /* PostModel.swift */; };
@@ -47,6 +48,7 @@
 		F7742645283D04AA000AC2B2 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		F7742647283D050F000AC2B2 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		F7742649283D055F000AC2B2 /* CellPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		F781B08E283FA3B4000B7E01 /* LoginAndPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAndPassword.swift; sourceTree = "<group>"; };
 		F78F734D283A4B3D00AE4141 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		F7EC04D7283BEA840063FB25 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		F7EC04DA283C045B0063FB25 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				F7EC04D7283BEA840063FB25 /* LogInViewController.swift */,
+				F781B08E283FA3B4000B7E01 /* LoginAndPassword.swift */,
 				F75D06842838206800A25573 /* ProfileViewController.swift */,
 				F78F734D283A4B3D00AE4141 /* ProfileHeaderView.swift */,
 			);
@@ -217,6 +220,7 @@
 				F75D06892838297400A25573 /* Post.swift in Sources */,
 				F75D068B28382D3E00A25573 /* InfoViewController.swift in Sources */,
 				F78F734E283A4B3D00AE4141 /* ProfileHeaderView.swift in Sources */,
+				F781B08F283FA3B4000B7E01 /* LoginAndPassword.swift in Sources */,
 				F75D068128381E3200A25573 /* TabBarController.swift in Sources */,
 				F7EC04DE283C0A130063FB25 /* UIView+Extension.swift in Sources */,
 				F7742642283D033D000AC2B2 /* PhotosTableViewCell.swift in Sources */,

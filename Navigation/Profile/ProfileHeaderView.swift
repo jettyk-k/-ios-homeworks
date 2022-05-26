@@ -161,7 +161,12 @@ class ProfileHeaderView: UIView {
     }
 
     @objc func pushShowStatusButton(sender: UIButton!) {
-        statusLabel.text = statusTextField.text
+        guard let textInField = statusTextField.text else { return }
+        if textInField.isEmpty {
+            statusTextField.shakeField()
+        } else {
+        statusLabel.text = statusText
+        }
         self.statusTextField.resignFirstResponder()
     }
     

@@ -9,6 +9,8 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
 
+    //  MARK: - Создание и настройка объектов для кастомизации ячейки
+    
     private let whiteView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -25,15 +27,17 @@ class PostTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
     }()
-
-    private let postImageView: UIImageView = {
+    
+    private lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .black
         imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapOnImage)
         return imageView
     }()
-
+    
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -43,24 +47,47 @@ class PostTableViewCell: UITableViewCell {
         label.textColor = .systemGray
         return label
     }()
-
-    private let likesLabel: UILabel = {
+    
+    private lazy var likesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
         label.backgroundColor = .white
+        label.text = "Likes: "
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(tapOnLabel)
         return label
     }()
-
+    
+    private lazy var numberOfLikes: UILabel = {
+        lazy var numberOfLikes = UILabel()
+        numberOfLikes.translatesAutoresizingMaskIntoConstraints = false
+        numberOfLikes.font = .systemFont(ofSize: 16, weight: .regular)
+        numberOfLikes.textColor = .black
+        numberOfLikes.text = "0"
+        return numberOfLikes
+    }()
+    
     private let viewsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.backgroundColor = .white
+        label.text = "Views: "
         return label
     }()
+    
+    private lazy var numberOfViews: UILabel = {
+        lazy var numberOfViews = UILabel()
+        numberOfViews.translatesAutoresizingMaskIntoConstraints = false
+        numberOfViews.font = .systemFont(ofSize: 16, weight: .regular)
+        numberOfViews.textColor = .black
+        numberOfViews.text = "0"
+        return numberOfViews
+    }()
+    //  MARK: - Инициализатор
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -72,14 +99,32 @@ class PostTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupCell(_ model: PostModel) {
+    //  MARK: - Обработка нажатий
+
+    lazy var tapOnLabel = UITapGestureRecognizer(target: self, action: #selector(self.tapLabel))
+
+    @objc func tapLabel() {
+        numberOfLikes.text = reciverOfDataFromeCell?.addLikes(likesInLabel: numberOfLikes.text ?? "0")
+    }
+
+    lazy var tapOnImage = UITapGestureRecognizer(target: self, action: #selector(tapImage))
+    
+    @objc func tapImage() {
+        numberOfViews.text = reciverOfDataFromeCell?.showPhoto(viewsInLabel: numberOfViews.text ?? "0", postPhoto: postImageView.image!)
+       
+    }
+    
+    //  MARK: - Заполнение ячеек данными
+
+    func setupCell(model: PostModel) {
         postNameLabel.text = model.author
         postImageView.image = model.image
         descriptionLabel.text = model.description
-        likesLabel.text = "Likes: " + String(model.likes)
-        viewsLabel.text = "Views: " + String(model.views)
+        numberOfLikes.text = "\(model.likes)"
+        numberOfViews.text = "\(model.views)"
     }
-  
+    
+    //  MARK: - Расстановка объектов в ячейке
     
     private func layout() {
         contentView.addSubview(whiteView)
@@ -91,42 +136,47 @@ class PostTableViewCell: UITableViewCell {
             whiteView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
         
-        [postNameLabel,postImageView, descriptionLabel, likesLabel, viewsLabel].forEach{ whiteView.addSubview($0) }
+        [postNameLabel,postImageView, descriptionLabel, likesLabel, numberOfLikes, viewsLabel, numberOfViews].forEach{ whiteView.addSubview($0) }
         
         let standartInset: CGFloat = 16
-        let imageInset: CGFloat = 12
+        let imageIndend: CGFloat = 12
         
         NSLayoutConstraint.activate([
             postNameLabel.topAnchor.constraint(equalTo: whiteView.topAnchor, constant: standartInset),
             postNameLabel.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: standartInset),
             postNameLabel.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -standartInset),
-            postNameLabel.bottomAnchor.constraint(equalTo: postImageView.topAnchor, constant: -imageInset)
-        ])
-        
-        NSLayoutConstraint.activate([
+            postNameLabel.bottomAnchor.constraint(equalTo: postImageView.topAnchor, constant: -imageIndend),
+            
             postImageView.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor),
             postImageView.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -standartInset),
             postImageView.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor),
-            postImageView.heightAnchor.constraint(equalTo: postImageView.widthAnchor, multiplier: 1.0)
-
-        ])
-        
-        NSLayoutConstraint.activate([
+            postImageView.heightAnchor.constraint(equalTo: postImageView.widthAnchor, multiplier: 1.0),
+            
             descriptionLabel.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: standartInset),
-            descriptionLabel.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -standartInset)
-        ])
-        
-        NSLayoutConstraint.activate([
+            descriptionLabel.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -standartInset),
+            
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: standartInset),
             likesLabel.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: standartInset),
             likesLabel.bottomAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: -standartInset),
-        ])
-        
-        NSLayoutConstraint.activate([
+            
+            numberOfLikes.topAnchor.constraint(equalTo: likesLabel.topAnchor),
+            numberOfLikes.leadingAnchor.constraint(equalTo: likesLabel.trailingAnchor),
+            numberOfLikes.bottomAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: -standartInset),
+            
+            numberOfViews.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: standartInset),
+            numberOfViews.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -standartInset),
+            numberOfViews.bottomAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: -standartInset),
+            
             viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: standartInset),
-            viewsLabel.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -standartInset),
+            viewsLabel.trailingAnchor.constraint(equalTo: numberOfViews.leadingAnchor),
             viewsLabel.bottomAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: -standartInset)
         ])
     }
-
+    
+    //  MARK: - Делегат
+    
+    var reciverOfDataFromeCell: DelegateOfReciverOfDataFromeCell?
 }
+
+
+

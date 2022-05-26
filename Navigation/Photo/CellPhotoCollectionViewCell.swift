@@ -26,10 +26,9 @@ class CellPhotoCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupImageModel(_ image: ImageModel) {
+    func setupImageModel(_ image: PhotoGalery) {
         photoImages.image = UIImage(named: image.image)
     }
-    
     private func imageLayout() {
         contentView.addSubview(photoImages)
         
