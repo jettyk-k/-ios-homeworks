@@ -117,8 +117,8 @@ class ProfileHeaderView: UIView {
         [fullNameLabel, statusLabel, statusTextField, setStatusButton, viewUnderAvatar, avatarImageView, closeProfileAvatarButton].forEach { addSubview($0) }
         
         NSLayoutConstraint.activate([
-            closeProfileAvatarButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            closeProfileAvatarButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            closeProfileAvatarButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            closeProfileAvatarButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
         ])
         
         topAvatarImageView = avatarImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16)
@@ -139,22 +139,22 @@ class ProfileHeaderView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            setStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            setStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
             setStatusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8)
         ])
         
         NSLayoutConstraint.activate([
-            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 20),
-            statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
-            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -8)
+            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.safeAreaLayoutGuide.bottomAnchor, constant: 20),
+            statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.safeAreaLayoutGuide.leadingAnchor),
+            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.safeAreaLayoutGuide.topAnchor, constant: -8)
         ])
         
         NSLayoutConstraint.activate([
-            statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -8),
-            statusTextField.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
-            statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.safeAreaLayoutGuide.topAnchor, constant: -8),
+            statusTextField.leadingAnchor.constraint(equalTo: fullNameLabel.safeAreaLayoutGuide.leadingAnchor),
+            statusTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             statusTextField.heightAnchor.constraint(equalToConstant: 40),
             
         ])

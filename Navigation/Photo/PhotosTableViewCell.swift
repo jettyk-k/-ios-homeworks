@@ -65,22 +65,22 @@ class PhotosTableViewCell: UITableViewCell {
     private func setupLayout() {
         [collectionView, labelText, button] .forEach { contentView.addSubview($0) }
         
-        let indent: CGFloat = 12
-        let indentForPhoto: CGFloat = 8
+        let inset: CGFloat = 12
+        let insetForPhoto: CGFloat = 8
         
         NSLayoutConstraint.activate([
             
-            collectionView.topAnchor.constraint(equalTo: labelText.bottomAnchor, constant: indent),
-            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: indent - indentForPhoto),
-            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -indent + indentForPhoto),
+            collectionView.topAnchor.constraint(equalTo: labelText.bottomAnchor, constant: inset),
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset - insetForPhoto),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset + insetForPhoto),
             collectionView.heightAnchor.constraint(equalToConstant: 100),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -indent),
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset),
             
-            labelText.topAnchor.constraint(equalTo: contentView.topAnchor, constant: indent),
-            labelText.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: indent),
+            labelText.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
+            labelText.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
             
             button.centerYAnchor.constraint(equalTo: labelText.centerYAnchor),
-            button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -indent)
+            button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset)
         ])
     }
 }

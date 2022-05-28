@@ -197,15 +197,15 @@ class LogInViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: vkLogoImage.bottomAnchor, constant: 120),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            stackView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             stackView.heightAnchor.constraint(equalToConstant: 100)
         ])
         
         NSLayoutConstraint.activate([
-            loginButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            loginButton.leadingAnchor.constraint(equalTo: stackView.safeAreaLayoutGuide.leadingAnchor),
             loginButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
-            loginButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            loginButton.trailingAnchor.constraint(equalTo: stackView.safeAreaLayoutGuide.trailingAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         
