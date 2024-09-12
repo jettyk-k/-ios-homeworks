@@ -9,31 +9,26 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
-    var postButton: UIButton!
-    
     var post = Post()
     
-    override func loadView() {
-        view = UIView()
-        
-        postButton = UIButton()
-        postButton.backgroundColor = .blue
-        postButton.layer.cornerRadius = 5
-        postButton.frame = CGRect(x: 20, y: 200, width: 200, height: 40)
-        postButton.setTitle("Post", for: .normal)
-        postButton.addTarget(self, action: #selector(showPost), for: .touchUpInside)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         view.addSubview(postButton)
     }
+    
+    private lazy var postButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
+        button.center = view.center
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitle("Посмотреть пост", for: .normal)
+        button.backgroundColor = .systemYellow
+        button.addTarget(self, action: #selector(showPost), for: .touchUpInside)
+        return button
+    }()
     
     @objc func showPost() {
         let postVC = PostViewController()
         postVC.post = post
         self.navigationController?.pushViewController(postVC, animated: true)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 }
